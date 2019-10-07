@@ -1,19 +1,46 @@
 #include<bits/stdc++.h>
 using namespace std;
+
+char temp[5][5];
+
+bool chk(char huruf){
+	for(int i=0;i<25;i++){
+		if(temp=='\0')return false;
+		if(temp[i]==huruf)return true;	
+	}
+}
+
+
 int main(){
 	//create table
-	int lokasi[25];
-	char temp[5][5];
-	for(int i=0;i<25;i++)lokasi[i]=i;
+	int lokasi[26];
+	
+	for(int i=0;i<25;i++)temp[i/5][i%5]='\0';
 	string key;
-	cin>>key;
+	cout<<"inputkan key dalam capslock dan jangan ada huruf berulang>>";
+	
+	while(cin>>key){
+		//jika tidak berulang
+		bool arr[26],benar=false,salah=false;
+		for(int i=0;i<key.size();i++){
+			if(key[i]>='A'&& key[i]<='Z')
+				if(arr[key[i]-'A']==false)arr[key[i]-'A']=true;
+				else salah=true;
+			else salah=true;//jika input tidak dikenal
+			if(salah) break;
+			if(i==key.size()-1)benar=true;
+		}
+		if(benar)break;
+		cout<<"inputkan key dalam capslock dan jangan ada huruf berulang>>";
+	}
+	
 	//tidak berulang
 	int i;
 	for(i=0;i<key.size();i++){
 		temp[i/5][i%5]=key[i];
 	}
 	char huruf='A';
-	while(i<25){
+	while(i<26){
 		while(chk(huruf)){//sudah ada
 		huruf++;
 		}
@@ -21,7 +48,7 @@ int main(){
 		huruf++;
 		i++;
 	}
-	for(i=0;i<25;i++){
+	for(i=0;i<26;i++){
 		lokasi[temp[i/5][i%5]-'A']=i;
 	}
 	//udh jadi key
@@ -29,6 +56,10 @@ int main(){
 	int counter=0;
 	string hasil;
 	while(1){
+		if(tmp!='0'){
+			counter=1;
+			chr[0]=tmp;
+		}
 		while(cin>>tmp && counter<2){
 			if(tmp>='A'&& tmp<='Z'){
 				chr[counter]=tmp;
@@ -39,8 +70,15 @@ int main(){
 				counter++;
 			}
 		}
+		tmp='0';
 		if(counter==0)break;
 		if(counter==1)chr[1]='X';
+		if(chr[0]=='J')chr[0]='I';
+		if(chr[1]=='J')chr[1]='I';
+		if(counter==2 && chr[0]==chr[1]){
+			tmp=chr[1];
+			chr[1]='X';
+		}
 		counter=0;
 		//encrypt
 		int pos[2],hsl[2];
@@ -55,8 +93,8 @@ int main(){
 			hsl[1]=pos[1]+5%25;
 		}
 		else{//tukeran
-			hsl[0]=pos[1]%5+pos[0]-pos[0]%5
-			hsl[1]=pos[0]%5+pos[1]-pos[1]%5
+			hsl[0]=pos[1]%5+pos[0]-pos[0]%5;
+			hsl[1]=pos[0]%5+pos[1]-pos[1]%5;
 		}
 		hasil+=hsl[0];
 		hasil+=hsl[1];

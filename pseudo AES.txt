@@ -1,0 +1,28 @@
+Pseudocode AES
+
+init Sbox
+init Collumn_mix
+//bisa diganti 1 lookup aja
+//32 bit jadi 256 entry 2^8
+//4 jenis geser 2^2
+//s box cuma 1 jenis perubahan
+//
+
+get file input in hexa
+get key file input
+
+while block available
+	loop 
+		key XOR input
+		if done break
+		generate key
+		S-box switch
+			lookup table
+		row switching
+			rot=1;
+			for(int j=1;j<row_block_size;j++){
+				shift_cyclic_left(0+collumn_block_size*j,collumn_block_size*(j+1)-1,rot);//rotation from bit a to b
+				rot++;
+		}
+		collumn mix
+			modular matrix multiplication
