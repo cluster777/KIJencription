@@ -34,16 +34,16 @@ string bin2hex(string input){
 	for(int i=input.size()-1;i>=0;i--){
 		if(pegang.size()<4){
 			pegang=input[i]+pegang;
-			continue;
+			if(pegang.size()<4)continue;
 		}
 		int hitung=pegang[0]-'0'+(pegang[1]-'0')*2+(pegang[2]-'0')*4+(pegang[3]-'0')*8;
-		if(hitung==10)hasil+='A';
-		else if(hitung==11)hasil+='B';
-		else if(hitung==12)hasil+='C';
-		else if(hitung==13)hasil+='D';
-		else if(hitung==14)hasil+='E';
-		else if(hitung==15)hasil+='F';
-		else hasil+=(char)(hitung+'0');
+		if(hitung==10)hasil='A'+hasil;
+		else if(hitung==11)hasil='B'+hasil;
+		else if(hitung==12)hasil='C'+hasil;
+		else if(hitung==13)hasil='D'+hasil;
+		else if(hitung==14)hasil='E'+hasil;
+		else if(hitung==15)hasil='F'+hasil;
+		else hasil=(char)(hitung+'0')+hasil;
 		pegang.clear();
 	}
 	return hasil;
