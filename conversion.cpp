@@ -22,7 +22,7 @@ string bin2tex(string input){
 			pegang=input[i]+pegang;
 			continue;
 		}
-		int hitung=pegang[0]-'0'+(pegang[1]-'0')*2+(pegang[2]-'0')*4+(pegang[3]-'0')*8+(pegang[4]-'0')*16+(pegang[5]-'0')*32+(pegang[6]-'0')*64+(pegang[7]-'0')*128
+		int hitung=pegang[0]-'0'+(pegang[1]-'0')*2+(pegang[2]-'0')*4+(pegang[3]-'0')*8+(pegang[4]-'0')*16+(pegang[5]-'0')*32+(pegang[6]-'0')*64+(pegang[7]-'0')*128;
 		hasil+=(char)hitung;
 		pegang.clear();
 	}
@@ -36,7 +36,7 @@ string bin2hex(string input){
 			pegang=input[i]+pegang;
 			continue;
 		}
-		int hitung=pegang[0]-'0'+(pegang[1]-'0')*2+(pegang[2]-'0')*4+(pegang[3]-'0')*8
+		int hitung=pegang[0]-'0'+(pegang[1]-'0')*2+(pegang[2]-'0')*4+(pegang[3]-'0')*8;
 		if(hitung==10)hasil+='A';
 		else if(hitung==11)hasil+='B';
 		else if(hitung==12)hasil+='C';
@@ -51,7 +51,7 @@ string bin2hex(string input){
 string hex2bin(string input){
 	string hasil="";
 	for(int i=0;i<input.size();i++){
-		int temp
+		int temp;
 		if(input[i]=='A')temp=10;
 		else if(input[i]=='B')temp=11;
 		else if(input[i]=='C')temp=12;
@@ -59,7 +59,7 @@ string hex2bin(string input){
 		else if(input[i]=='E')temp=14;
 		else if(input[i]=='F')temp=15;
 		else temp=(int)input[i]-'0';		
-		while(int j=0;j<4;j++){
+		for(int j=0;j<4;j++){
 			if(temp%2==1)hasil+='1';
 			else hasil+='0';
 			temp/=2;
