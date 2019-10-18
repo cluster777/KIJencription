@@ -11,6 +11,7 @@ string tex2bin(string input){
 			temp/=2;
 		}
 	}
+	return hasil;
 }
 
 string bin2tex(string input){
@@ -36,6 +37,7 @@ string hex2bin(string input){
 			temp/=2;
 		}
 	}
+	return hasil;
 }
 
 int main(){
