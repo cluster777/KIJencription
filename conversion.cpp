@@ -15,7 +15,18 @@ string tex2bin(string input){
 }
 
 string bin2tex(string input){
-	
+	string hasil="";
+	string pegang="";
+	for(int i=input.size()-1;i>=0;i--){
+		if(pegang.size()<8){
+			pegang=input[i]+pegang;
+			continue;
+		}
+		int hitung=pegang[0]-'0'+(pegang[1]-'0')*2+(pegang[2]-'0')*4+(pegang[3]-'0')*8+(pegang[4]-'0')*16+(pegang[5]-'0')*32+(pegang[6]-'0')*64+(pegang[7]-'0')*128
+		hasil+=(char)hitung;
+		pegang.clear();
+	}
+	return hasil;
 }
 string bin2hex(string input){
 	string hasil="";
